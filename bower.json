@@ -1,31 +1,37 @@
 {
-  "name": "ng-file-input",
-  "version": "0.0.0",
-  "homepage": "https://github.com/viniciusmelquiades/ng-file-input",
-  "authors": [
-    "Vinicius Salvati Melquiades <vinicius.melquiades@outlook.com>"
-  ],
-  "moduleType": [
-    "amd",
-    "globals"
-  ],
-  "keywords": [
-    "directive",
-    "angular",
-    "input",
-    "file",
-    "model",
-    "ngModel"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "~1.4.1"
-  }
+	"name": "ng-file-input",
+	"version": "0.0.0",
+	"homepage": "https://github.com/viniciusmelquiades/ng-file-input",
+	"main": [
+		"dist/ng-file-input.js"
+	],
+	"authors": [
+		"Vinicius Salvati Melquiades <vinicius.melquiades@outlook.com>"
+	],
+	"moduleType": [
+		"amd",
+		"globals"
+	],
+	"keywords": [
+		"directive",
+		"angular",
+		"input",
+		"file",
+		"model",
+		"ngModel"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests",
+		".gitignore",
+		"gulpfile.js",
+		"typings"
+	],
+	"dependencies": {
+		"angular": "~1.4.1"
+	}
 }

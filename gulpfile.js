@@ -14,7 +14,7 @@ gulp.task('compile', function () {
 		.pipe(sourcemaps.init())
 		.pipe(ts(tsProject))
 		.pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src/' }))
-		.pipe(gulp.dest('build'));
+		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', ['compile'], function () {
