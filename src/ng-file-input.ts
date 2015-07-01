@@ -11,10 +11,17 @@
 
 		function link(scope: ng.IScope, element: JQuery, attrs: ng.IAttributes, ngModel?: ng.INgModelController) {
 			if (ngModel && element[0].tagName === 'INPUT') {
+				
 				element.on('change', function() {
 					var input = <HTMLInputElement>this;
 
-					ngModel.$setViewValue(input.files[0]);
+					if ('multiple' in attrs) {
+						var files = Array.prototype.map.call(input.files, (file) => file);
+
+						ngModel.$setViewValue(files);
+					} else {
+						ngModel.$setViewValue(input.files[0]);
+					}	
 				});
 			}
 		}

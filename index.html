@@ -21,6 +21,7 @@
 		<div ng-repeat="item in sample2">
 			<p>name: {{item.name}}</p>
 			<p>type: {{item.type}}</p>
+			<hr ng-if="!$last">
 		</div>
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="build/ng-file-input.js"></script>
