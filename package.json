@@ -1,0 +1,25 @@
+{
+  "name": "ng-file-input",
+  "version": "1.0.0",
+  "description": "ngModel directive for file inputs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniciusmelquiades/ng-file-input.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/viniciusmelquiades/ng-file-input/issues"
+  },
+  "homepage": "https://github.com/viniciusmelquiades/ng-file-input#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-typescript": "^2.7.8",
+    "gulp-util": "^3.0.6"
+  }
+}
