@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ng-file-input">
+	<head>
+		<meta charset="UTF-8">
+		<title>ng-file-input test page</title>
+	</head>
+	<body>
+		<h2>No ng-model</h2>
+		<p>Should do nothing. specially not throw error!</p>
+		<input type="file">
+		<h2>Basic usage ng-model</h2>
+		<p>File should be in the model</p>
+		<input type="file" ng-model="sample1" ng-change="log(sample1)">
+		<div ng-if="sample1">
+			<p>name: {{sample1.name}}</p>
+			<p>type: {{sample1.type}}</p>
+		</div>
+		<h2>Multiple files</h2>
+		<p>The resulting ngModel will be an array of files</p>
+		<input type="file" multiple ng-model="sample2" ng-change="log(sample2)">
+		<div ng-repeat="item in sample2">
+			<p>name: {{item.name}}</p>
+			<p>type: {{item.type}}</p>
+		</div>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="build/ng-file-input.js"></script>
+		<script>
+			angular.module('ng-file-input').run(['$rootScope', function ($rootScope) {
+				$rootScope.log = function (file) {
+					if(file instanceof Blob){
+						console.log(file, file.name, file.type);
+					} else {
+						console.log(file);
+					}
+				};
+			}]);
+		</script>
+	</body>
+
+</html>
