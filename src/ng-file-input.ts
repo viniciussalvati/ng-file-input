@@ -11,7 +11,7 @@
 
 		function link(scope: ng.IScope, element: JQuery, attrs: ng.IAttributes, ngModel?: ng.INgModelController) {
 			if (ngModel && element[0].tagName === 'INPUT') {
-				
+
 				element.on('change', function() {
 					var input = <HTMLInputElement>this;
 
@@ -21,11 +21,11 @@
 						ngModel.$setViewValue(files);
 					} else {
 						ngModel.$setViewValue(input.files[0]);
-					}	
+					}
 				});
 			}
 		}
 	}
 
 	angular.module('ng-file-input', []).directive('input', fileInput);
-} ())
+} ());

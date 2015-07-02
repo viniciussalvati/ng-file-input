@@ -2,7 +2,9 @@ var gulp = require('gulp'),
 	util = require('gulp-util'),
 	ts = require('gulp-typescript'),
 	sourcemaps = require('gulp-sourcemaps'),
-	connect = require('gulp-connect');
+	connect = require('gulp-connect'),
+	rename = require('gulp-rename'),
+	uglify = require('gulp-uglify');
 
 var tsProject = ts.createProject({
 	declarationFiles: true,
@@ -10,10 +12,18 @@ var tsProject = ts.createProject({
 });
 
 gulp.task('compile', function () {
-	gulp.src(['src/*.ts', 'typings/**/*.ts'])
+	return gulp.src(['src/*.ts', 'typings/**/*.ts'])
 		.pipe(sourcemaps.init())
 		.pipe(ts(tsProject))
 		.pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src/' }))
+		.pipe(gulp.dest('build'));
+});
+
+gulp.task('release', ['compile'], function () {
+	return gulp.src('build/*.js')
+		.pipe(gulp.dest('dist'))
+		.pipe(uglify())
+		.pipe(rename({ extname: '.min.js' }))
 		.pipe(gulp.dest('dist'));
 });
 
