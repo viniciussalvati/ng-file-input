@@ -31,7 +31,7 @@ gulp.task('watch', ['compile'], function () {
 	gulp.watch(['src/*.ts', 'typings/**/*.ts'], ['compile']);
 });
 
-gulp.task('server', function () {
+gulp.task('server', ['watch'], function () {
 	connect.server({
 		root: '.',
 		livereload: true

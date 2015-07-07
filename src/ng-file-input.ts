@@ -2,9 +2,12 @@
 
 interface ngFileAttributes {
 	maxSize: string;
+	type: string;
 }
 
 (function() {
+	var fileTypeRegex = /^file$/i;
+
 	function validateSize(value: File, maxSize?: number) {
 		if (!maxSize) return true;
 
@@ -13,8 +16,6 @@ interface ngFileAttributes {
 
 	fileInput.$inject = [];
 	function fileInput(): ng.IDirective {
-		var fileTypeRegex = /^file$/i;
-
 		return {
 			restrict: 'E',
 			require: '?ngModel',
@@ -22,7 +23,7 @@ interface ngFileAttributes {
 		}
 
 		function link(scope: ng.IScope, element: JQuery, attrs: ngFileAttributes, ngModel?: ng.INgModelController) {
-			if (ngModel && element[0].tagName === 'INPUT' && fileTypeRegex.test(attrs['type'])) {
+			if (ngModel && element[0].tagName === 'INPUT' && fileTypeRegex.test(attrs.type)) {
 
 				element.on('change', function() {
 					var input = <HTMLInputElement>this;
