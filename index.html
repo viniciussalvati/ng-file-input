@@ -8,6 +8,7 @@
 		<h2>No ng-model</h2>
 		<p>Should do nothing. specially not throw error!</p>
 		<input type="file">
+		<!-- -->
 		<h2>Basic usage ng-model</h2>
 		<p>File should be in the model</p>
 		<input type="file" ng-model="sample1" ng-change="log(sample1)">
@@ -15,10 +16,29 @@
 			<p>name: {{sample1.name}}</p>
 			<p>type: {{sample1.type}}</p>
 		</div>
+		<!-- -->
 		<h2>Multiple files</h2>
 		<p>The resulting ngModel will be an array of files</p>
 		<input type="file" multiple ng-model="sample2" ng-change="log(sample2)">
 		<div ng-repeat="item in sample2">
+			<p>name: {{item.name}}</p>
+			<p>type: {{item.type}}</p>
+			<hr ng-if="!$last">
+		</div>
+		<!-- -->
+		<h2>Max file size</h2>
+		<p>Can't select file bigger than 1MB</p>
+		<input type="file" ng-model="sample3" ng-change="log(sample3)" max-size="1024*1024">
+		<div ng-if="sample3">
+			<p>name: {{sample3.name}}</p>
+			<p>type: {{sample3.type}}</p>
+		</div>
+		<!-- -->
+		<h2>Multiple files, with max size</h2>
+		<p>Files bigger than 1MB will be denied. The rest will pass. If all files fail the validation, value will be undefined.</p>
+		<input
+		type="file" multiple ng-model="sample4" ng-change="log(sample4)" max-size="1024*1024" />
+		<div ng-repeat="item in sample4">
 			<p>name: {{item.name}}</p>
 			<p>type: {{item.type}}</p>
 			<hr ng-if="!$last">

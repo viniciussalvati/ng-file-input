@@ -1,6 +1,16 @@
 /// <reference path="../typings/tsd.d.ts" />
 
+interface ngFileAttributes {
+	maxSize: string;
+}
+
 (function() {
+	function validateSize(value: File, maxSize?: number) {
+		if (!maxSize) return true;
+
+		return value.size <= maxSize;
+	}
+
 	fileInput.$inject = [];
 	function fileInput(): ng.IDirective {
 		return {
@@ -9,19 +19,31 @@
 			link: link
 		}
 
-		function link(scope: ng.IScope, element: JQuery, attrs: ng.IAttributes, ngModel?: ng.INgModelController) {
+		function link(scope: ng.IScope, element: JQuery, attrs: ngFileAttributes, ngModel?: ng.INgModelController) {
 			if (ngModel && element[0].tagName === 'INPUT') {
 
 				element.on('change', function() {
 					var input = <HTMLInputElement>this;
+					var maxSize = scope.$eval(attrs.maxSize);
+					var result: any;
 
 					if ('multiple' in attrs) {
-						var files = Array.prototype.map.call(input.files, (file) => file);
+						var files: File[] = Array.prototype.map.call(input.files, (file) => file);
 
-						ngModel.$setViewValue(files);
+						files = files.filter((f) => validateSize(f, maxSize));
+
+						if (files.length) {
+							result = files;
+						}
 					} else {
-						ngModel.$setViewValue(input.files[0]);
+						var file = input.files[0];
+
+						if (validateSize(file, maxSize)) {
+							result = file;
+						}
 					}
+
+					ngModel.$setViewValue(result);
 				});
 			}
 		}
