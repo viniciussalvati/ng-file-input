@@ -3,6 +3,8 @@
 (function() {
 	fileInput.$inject = [];
 	function fileInput(): ng.IDirective {
+		var fileTypeRegex = /^file$/i;
+
 		return {
 			restrict: 'E',
 			require: '?ngModel',
@@ -10,7 +12,7 @@
 		}
 
 		function link(scope: ng.IScope, element: JQuery, attrs: ng.IAttributes, ngModel?: ng.INgModelController) {
-			if (ngModel && element[0].tagName === 'INPUT') {
+			if (ngModel && element[0].tagName === 'INPUT' && fileTypeRegex.test(attrs['type'])) {
 
 				element.on('change', function() {
 					var input = <HTMLInputElement>this;
