@@ -2,13 +2,14 @@
 (function () {
     fileInput.$inject = [];
     function fileInput() {
+        var fileTypeRegex = /^file$/i;
         return {
             restrict: 'E',
             require: '?ngModel',
             link: link
         };
         function link(scope, element, attrs, ngModel) {
-            if (ngModel && element[0].tagName === 'INPUT') {
+            if (ngModel && element[0].tagName === 'INPUT' && fileTypeRegex.test(attrs['type'])) {
                 element.on('change', function () {
                     var input = this;
                     if ('multiple' in attrs) {
